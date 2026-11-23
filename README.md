@@ -1,5 +1,7 @@
 # Omastonk
 
+Fork of [brianblakely/omastonk](https://github.com/brianblakely/omastonk), maintained by Jose Coronado.
+
 Omastonk is a multi-instance market widget for the Omarchy bar. It shows a
 selected symbol, current quote, daily direction, and charts ranging from one day
 to five years.
@@ -9,7 +11,7 @@ to five years.
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/brianblakely/omastonk.git --enable --yes
+omarchy plugin add https://github.com/jfcoronado/omastonk.git --enable --yes
 ```
 
 To add another instance, edit `~/.config/omarchy/shell.json` and insert another
@@ -17,7 +19,7 @@ entry at the desired position in one of the `bar.layout.left`, `center`, or
 `right` arrays:
 
 ```json
-{ "id": "b.omastonk" }
+{ "id": "io.github.jfcoronado.omastonk" }
 ```
 
 Each repeated entry creates an independent instance. Omarchy reloads the bar
@@ -35,11 +37,11 @@ markets.
 ## Update
 
 ```bash
-omarchy plugin update b.omastonk
+omarchy plugin update io.github.jfcoronado.omastonk
 ```
 
 ## Uninstall
 
 ```bash
-omarchy plugin remove b.omastonk
+omarchy plugin remove io.github.jfcoronado.omastonk
 ```

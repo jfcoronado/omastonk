@@ -5,7 +5,7 @@ import qs.Ui
 
 Panel {
   id: root
-  moduleName: "b.omastonk"
+  moduleName: "io.github.jfcoronado.omastonk"
   manageIpc: false
 
   property var anchorItem: null

@@ -5,7 +5,7 @@ import qs.Ui
 
 BarWidget {
   id: root
-  moduleName: "b.omastonk"
+  moduleName: "io.github.jfcoronado.omastonk"
 
   property real quotePrice: NaN
   property real quoteChange: 0
