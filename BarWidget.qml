@@ -18,7 +18,8 @@ BarWidget {
   readonly property string instanceId: String(setting("instanceId", "")) || transientInstanceId
   readonly property bool quoteReady: quoteStatus === "ready" && isFinite(quotePrice)
   readonly property bool priceDown: quoteReady && quoteChange < 0
-  readonly property color quoteColor: priceDown ? Color.bar.active : Color.bar.text
+  readonly property bool priceUp: quoteReady && quoteChange > 0
+  readonly property color quoteColor: priceDown ? Color.bar.active : (priceUp ? themeGreen.color : Color.bar.text)
   readonly property string trendGlyph: quoteReady ? (priceDown ? "\u25BC" : "\u25B2") : ""
   readonly property string priceText: quoteReady ? formatPrice(quotePrice) : (quoteStatus === "loading" ? "..." : "?")
   readonly property string labelText: symbol === "" ? "$" : symbol + " " + priceText + (trendGlyph === "" ? "" : " " + trendGlyph)
@@ -320,12 +321,16 @@ BarWidget {
     }
   }
 
+  ThemeGreen {
+    id: themeGreen
+  }
+
   WidgetButton {
     id: button
     anchors.fill: parent
     bar: root.bar
     text: root.labelText
-    foreground: Color.bar.text
+    foreground: root.priceUp ? themeGreen.color : Color.bar.text
     activeColor: Color.bar.active
     active: root.priceDown
     horizontalMargin: 8.5

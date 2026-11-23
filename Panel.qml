@@ -21,7 +21,8 @@ Panel {
   readonly property color foreground: Color.popups.text
   readonly property color dim: Qt.darker(foreground, 1.65)
   readonly property bool intervalDown: chartPoints.length > 1 && chartPoints[chartPoints.length - 1] < chartPoints[0]
-  readonly property color chartColor: intervalDown ? Color.bar.active : Color.bar.text
+  readonly property bool intervalUp: chartPoints.length > 1 && chartPoints[chartPoints.length - 1] > chartPoints[0]
+  readonly property color chartColor: intervalDown ? Color.bar.active : (intervalUp ? themeGreen.color : Color.bar.text)
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
   readonly property string symbol: host ? host.symbol : normalizeSymbol(setting("symbol", ""))
   readonly property real intervalPriceChange: chartPoints.length > 1 ? chartPoints[chartPoints.length - 1] - chartPoints[0] : NaN
@@ -236,6 +237,10 @@ Panel {
 
   onChartPointsChanged: chartCanvas.requestPaint()
   onChartColorChanged: chartCanvas.requestPaint()
+
+  ThemeGreen {
+    id: themeGreen
+  }
   onIntervalIndexChanged: chartCanvas.requestPaint()
 
   Process {
